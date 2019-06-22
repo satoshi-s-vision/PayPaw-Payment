@@ -1,4 +1,4 @@
-# PayPaw-Payments
+# paypaw.org - PayPaw-Payments
 PayPaw Payments 💰🐾
 
 💰🐶🐾
