@@ -4,11 +4,34 @@
   </head>
 
   <body>
-    <h2>Nothing special</h2>
-    <button id="mybtn">Cliiiik me</button>
+    <div class="container-fluid">
+        <h2>Nothing special</h2>
+        <button id="mybtn" type="button" class="btn btn-primary">Click Me</button>
+
+        <div class="col-md">
+            <div>Pay xxxx BTM</div>
+
+            <div>Waiting for payment</div>
+
+            <div id="qrcode"></div>
+
+            <button type="button" class="el-button copy-address el-button--default">
+            <span>Copy Address</span>
+            </button></div><div class="el-row"><div style="margin-top: 10px;">
+          </div>
+        </div>
+    </div>
+
+
     <script>
       document.getElementById("mybtn").addEventListener("click", function(){
-        payPaw()
+        payPaw.render({
+          "user_id": 123456,
+          "email": "test@g.com",
+          "currency": "BTM",
+          "currency_amount": 1500,
+          "message": "GG GL"
+        })
       })
     </script>
     <!-- From PayPaw -->
