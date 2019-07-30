@@ -1,53 +1,72 @@
 <html>
   <head>
-    <title>Regular html page</title>
+    <title>PayPaw Demo</title>
+    <style>
+
+    #pp-checkout {
+      background-color: lightgreen!important;
+      text-align: center;
+      width: 250px;
+      border-radius: 10px;
+      border: 2px solid red;
+      display: none;
+    }
+
+    #qrcode img {
+      margin: auto;
+    }
+
+    #paypaw-checkout {
+      display: none;
+    }
+
+    </style>
   </head>
 
   <body>
     <div class="container-fluid">
-        <h2>Nothing special</h2>
-        <button id="mybtn" type="button" class="btn btn-primary">Click Me</button>
+      <h2>PayPaw btn rendered:</h2>
+        <!-- <button id="paypaw" type="button" class="btn btn-primary">Pay 100 BTM</button> -->
 
-        <div class="col-md">
-            <div>Pay xxxx BTM</div>
+        <!-- 1. Place the button somewhere in your HTML -->
+        <!-- <div id="paypaw-btn"></div> -->
 
-            <div>Waiting for payment</div>
-
-            <div id="qrcode"></div>
-
-            <button type="button" class="el-button copy-address el-button--default">
+      <div id="pp-checkout" class="d-block">
+        <button id="paypaw" type="button" class="btn btn-primary">Pay 5000 BTM</button>
+        <div id="paypaw-checkout">
+          <div>Waiting for payment</div>
+          <div id="qrcode"></div>
+          <button type="button" class="el-button copy-address el-button--default">
             <span>Copy Address</span>
-            </button></div><div class="el-row"><div style="margin-top: 10px;">
-          </div>
+          </button>
         </div>
+      </div>
     </div>
 
-
-    <script>
-      document.getElementById("mybtn").addEventListener("click", function(){
-
-        // data:
-        // address: "pending"
-        // asset_amount: "5555"
-        // asset_id: 1
-        // currency: "BTM"
-        // currency_amount: "5555"
-        // email: "1@1.com"
-        // id: 28
-        // message: ""
-        // status:
-        // user_id: 11
-
-        payPaw.render({
-          "user_id": 11,
-          "email": "1@1.com",
-          "currency": "BTM",
-          "currency_amount": 500000,
-          "message": "GG GL 000"
-        })
-      })
-    </script>
-    <!-- From PayPaw -->
+    <!-- 2. Add the BrainBlocks script -->
     <script src="http://localhost:3000/js/paypaw.js"></script>
+
+    <!-- // data:
+    // address: "pending"
+    // asset_amount: "5555"
+    // asset_id: 1
+    // currency: "BTM"
+    // currency_amount: "5555"
+    // email: "1@1.com"
+    // id: 28
+    // message: ""
+    // status:
+    // user_id: 11 -->
+
+    <!-- 3. Render the button -->
+    <script>
+      payPaw.render({
+        "user_id": 11,
+        "email": "1@1.com",
+        "currency": "BTM",
+        "currency_amount": 500000,
+        "message": "GG GL 000"
+      }, 'paypaw-btn');
+    </script>
   </body>
 </html>
