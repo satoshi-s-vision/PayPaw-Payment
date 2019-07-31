@@ -3,42 +3,76 @@
     <title>PayPaw Demo</title>
     <style>
 
+    /* container */
     #pp-checkout {
-      background-color: lightgreen!important;
+      background-color: #eee!important;
       text-align: center;
-      width: 250px;
-      border-radius: 10px;
-      border: 2px solid red;
+      width: 300px;
+      border-radius: 15px;
+      border: none;
       display: none;
-    }
-
-    #qrcode img {
       margin: auto;
     }
 
+    #paypaw {
+      width: 85%;
+      height: 50px;
+      background: transparent;
+      box-shadow: inset 0 0 0 #ddd;
+    }
+
+    #paypaw-logo {
+      padding-right: 15px;
+      margin-right: 15px;
+      border-right: 2px solid #ccc;
+      color: #ea9b08;
+    }
+
+    /* inner */
     #paypaw-checkout {
       display: none;
+      margin: auto;
+      width: 250px;
+      border-radius: 15px;
+      background: white;
+    }
+
+    #paypaw-countdown {
+      width: 100%;
+      border-radius: 15px 15px 0 0;
+      font-size: 15px;
+      background: #7CCA7D;
+      color: white;
+    }
+
+    #qrcode img {
+      margin: 15px auto 10px auto;
+    }
+
+    #paypaw-checkout-address {
+      word-break: break-all;
+      font-size: 14px;
+      padding: 0 5px 5px;
+    }
+
+    #copy-address-btn {
+      width: 100%;
+      border-radius: 0 0 15px 15px;
     }
 
     </style>
   </head>
 
   <body>
-    <div class="container-fluid">
-      <h2>PayPaw btn rendered:</h2>
-        <!-- <button id="paypaw" type="button" class="btn btn-primary">Pay 100 BTM</button> -->
-
-        <!-- 1. Place the button somewhere in your HTML -->
-        <!-- <div id="paypaw-btn"></div> -->
-
+    <div class="container-fluid" style="margin-top: 15vh;">
       <div id="pp-checkout" class="d-block">
-        <button id="paypaw" type="button" class="btn btn-primary">Pay 5000 BTM</button>
+        <button id="paypaw" type="button" class="btn"><i class="fas fa-money-bill-alt"></i><span id="paypaw-logo">PayPaw</span>Pay <b>5000 BTM</b></button>
         <div id="paypaw-checkout">
-          <div>Waiting for payment</div>
+          <div class="btn" id="paypaw-countdown">
+            <span id="countdown-timer"></span> Waiting for payment</div>
           <div id="qrcode"></div>
-          <button type="button" class="el-button copy-address el-button--default">
-            <span>Copy Address</span>
-          </button>
+          <div id="paypaw-checkout-address">bm1q5ygtx5hrqxpu8tjyjsw3vmxjyjtv8hw7sh5xhw</div>
+          <button id="copy-address-btn" type="button" class="btn btn-secondary">COPY ADDRESS</button>
         </div>
       </div>
     </div>
@@ -60,6 +94,64 @@
 
     <!-- 3. Render the button -->
     <script>
+        function fallbackCopyTextToClipboard(text) {
+          var textArea = document.createElement("textarea");
+          textArea.value = text;
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+
+          try {
+            var successful = document.execCommand('copy');
+            var msg = successful ? 'successful' : 'unsuccessful';
+            document.querySelector('#copy-address-btn').textContent = 'Copied!';
+          } catch (err) {
+            alert(`Fallback: Oops, unable to copy ${err}`);
+          }
+          document.body.removeChild(textArea);
+        }
+        function copyTextToClipboard(text) {
+          if (!navigator.clipboard) {
+            fallbackCopyTextToClipboard(text);
+            return;
+          }
+          navigator.clipboard.writeText(text).then(function() {
+            document.querySelector('#copy-address-btn').textContent = 'Copied!'
+          }, function(err) {
+            alert(`Async: Could not copy text: ${err}`)
+          });
+        }
+
+        let copyBobBtn = document.querySelector('#copy-address-btn');
+
+        copyBobBtn.addEventListener('click', function(event) {
+          copyTextToClipboard(
+            document.querySelector('#paypaw-checkout-address').textContent
+          );
+        });
+
+      // Set the date we're counting down to
+      var countTime = 600;
+
+      // Update the count down every 1 second
+      var x = setInterval(function() {
+
+        // Time calculations for days, hours, minutes and seconds
+        var minutes = Math.floor(countTime / 60);
+        var seconds = Math.floor(countTime % 60);
+        countTime--;
+
+        if (minutes < 10) minutes = '0' + minutes;
+        if (seconds < 10) seconds = '0' + seconds;
+
+        document.getElementById("countdown-timer").innerHTML = minutes + ":" + seconds;
+
+        if (countTime < 0) {
+          clearInterval(x);
+          document.getElementById("paypaw-countdown").innerHTML = "Expired!";
+        }
+      }, 1000);
+
       payPaw.render({
         "user_id": 11,
         "email": "1@1.com",
