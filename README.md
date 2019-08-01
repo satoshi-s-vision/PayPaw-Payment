@@ -1,4 +1,4 @@
-# PayPaw.org 💰🐶🐾 PayPaw-Payment
+# PayPaw.org 💰🐶🐾 PayPaw - It is too easy.
 
 Project for Devcon2 (Bytom Blockchain)
 
