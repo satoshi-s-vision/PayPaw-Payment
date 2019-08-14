@@ -5,6 +5,11 @@ Project for Devcon2 (Bytom Blockchain) https://devcon.bytom.io/
 Accept BTM payment with paypaw checkout!
 Take a look at this sample page, Note: user_id is your user_id in Paypaw.org
 
+
+    1. Sign up with your BTM Vapor wallet address and become a recipient
+    2. Get your Recipient ID (User ID) from Main menu -> Dashboard
+    3. Add and modify the following code to your web-app
+    
 ```html
 <html>
   <head>
