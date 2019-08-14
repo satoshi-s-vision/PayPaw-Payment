@@ -4,25 +4,32 @@
   </head>
 
   <body>
-    <div class="alert alert-primary h3 d-flex justify-content-center"><b>PayPaw</b>&nbsp;-&nbsp;It is too easy.</div>
-    <!-- 1. Place the button somewhere in your HTML -->
+    <!-- i. Place the button somewhere in your HTML -->
     <div id='paypaw-btn'></div>
 
-    <!-- 2. Add the PayPaw script -->
-    <!-- For development -->
-    <!-- <script src="http://localhost:3000/js/paypaw.js"></script> -->
-
-    <!-- For production -->
+    <!-- ii. Add the PayPaw script -->
     <script src="http://localhost:3000/js/paypaw.js"></script>
 
-    <!-- 3. Render the button -->
+    <!-- iii. Render the button -->
     <script>
       payPaw.render({
-        "user_id": 11,
-        "email": "1@1.com",
-        "currency": "BTM",
-        "currency_amount": 1000000000,
-        "message": "GG GL 000"
+
+        // Payment info
+        payment: {
+          "user_id": 6,
+          "email": "paypaw.org@gmail.com",
+          "currency": "BTM",
+          "currency_amount": 50,
+          "message": "hello paw"
+        },
+
+        // Your callback method or API request here
+        afterPayment: function(data) {
+          alert('Payment received! Your callback method or API request here');
+          // payment data
+          console.log(data);
+        }
+
       }, 'paypaw-btn');
     </script>
   </body>
