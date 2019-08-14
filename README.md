@@ -1,8 +1,10 @@
 # PayPaw.org 💰🐶🐾 PayPaw - It is too easy.
 
+https://paypaw.org
 
 Accept BTM payment with paypaw checkout!
-Take a look at this sample page, Note: user_id is your user_id in https://paypaw.org
+Take a look at this sample page
+Note: user_id is recipient's paypaw user id
 
 
     1. Sign up with your BTM Vapor wallet address and become a recipient
