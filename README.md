@@ -1,4 +1,12 @@
-# PayPaw.org 💰🐶🐾 PayPaw - It is too easy.
+Production youtube demo link: https://youtu.be/nrBThh5nfCk
+
+# Service Sunset Announcement:
+
+### Due to lack of adoption and high cost of maintainace (AWS cloud + Full Bytom Nodes) we decided to sunset PayPaw payments (2021 Sept)
+
+--
+
+### PayPaw.org 💰🐶🐾 PayPaw - It is too easy.
 
 https://paypaw.org
 
